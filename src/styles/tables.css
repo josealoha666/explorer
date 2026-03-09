@@ -60,13 +60,52 @@
 	font-weight: 500;
 }
 
-/* Blocks tables: keep stable row height between skeleton and loaded states */
+/* Blocks tables: keep stable row height/width between skeleton and loaded states */
+.blocks-table {
+	table-layout: fixed;
+}
+
 .blocks-table tbody tr {
 	height: 44px;
 }
 
 .blocks-table td {
 	vertical-align: middle;
+}
+
+.blocks-col-block,
+.blocks-col-timestamp,
+.blocks-col-txns,
+.blocks-col-miner,
+.blocks-col-gas-used,
+.blocks-col-gas-limit,
+.blocks-col-size {
+	white-space: nowrap;
+}
+
+.blocks-col-block {
+	width: 110px;
+}
+
+.blocks-col-timestamp {
+	width: 190px;
+}
+
+.blocks-col-txns {
+	width: 90px;
+}
+
+.blocks-col-miner {
+	width: 160px;
+}
+
+.blocks-col-gas-used,
+.blocks-col-gas-limit {
+	width: 130px;
+}
+
+.blocks-col-size {
+	width: 110px;
 }
 
 .dash-table td.text-right {

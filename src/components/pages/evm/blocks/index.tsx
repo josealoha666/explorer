@@ -180,42 +180,39 @@ export default function Blocks() {
             <table className="dash-table blocks-table">
               <thead>
                 <tr>
-                  <th>{t("tableBlock")}</th>
-                  <th>{t("tableTimestamp")}</th>
-                  <th>{t("tableTxns")}</th>
-                  <th className="hide-mobile">{t("tableMiner")}</th>
-                  <th>{t("tableGasUsed")}</th>
-                  <th className="hide-mobile">{t("tableGasLimit")}</th>
-                  <th className="hide-mobile">{t("tableSize")}</th>
+                  <th className="blocks-col-block">{t("tableBlock")}</th>
+                  <th className="blocks-col-timestamp">{t("tableTimestamp")}</th>
+                  <th className="blocks-col-txns">{t("tableTxns")}</th>
+                  <th className="hide-mobile blocks-col-miner">{t("tableMiner")}</th>
+                  <th className="blocks-col-gas-used">{t("tableGasUsed")}</th>
+                  <th className="hide-mobile blocks-col-gas-limit">{t("tableGasLimit")}</th>
+                  <th className="hide-mobile blocks-col-size">{t("tableSize")}</th>
                 </tr>
               </thead>
               <tbody>
                 {Array.from({ length: BLOCKS_PER_PAGE }).map((_, i) => (
                   // biome-ignore lint/suspicious/noArrayIndexKey: skeleton placeholder
                   <tr key={i}>
-                    <td>
-                      <span
-                        className="skeleton-pulse table-cell-number"
-                        style={{ width: "72px", height: 18 }}
-                      />
+                    <td className="blocks-col-block">
+                      <span className="skeleton-pulse" style={{ width: "72px", height: 14 }} />
                     </td>
-                    <td className="table-cell-text">
-                      <span className="skeleton-pulse" style={{ width: "165px", height: 18 }} />
+                    <td className="blocks-col-timestamp">
+                      <span className="skeleton-pulse" style={{ width: "165px", height: 14 }} />
                     </td>
-                    <td className="table-cell-value">
-                      <span className="skeleton-pulse" style={{ width: "28px", height: 18 }} />
+                    <td className="blocks-col-txns">
+                      <span className="skeleton-pulse" style={{ width: "28px", height: 14 }} />
                     </td>
-                    <td className="table-cell-mono hide-mobile">
-                      <span className="skeleton-pulse" style={{ width: "95px", height: 18 }} />
+                    <td className="hide-mobile blocks-col-miner">
+                      <span className="skeleton-pulse" style={{ width: "95px", height: 14 }} />
                     </td>
-                    <td className="table-cell-text">
-                      <span className="skeleton-pulse" style={{ width: "85px", height: 18 }} />
+                    <td className="blocks-col-gas-used">
+                      <span className="skeleton-pulse" style={{ width: "85px", height: 14 }} />
                     </td>
-                    <td className="table-cell-muted hide-mobile">
-                      <span className="skeleton-pulse" style={{ width: "85px", height: 18 }} />
+                    <td className="hide-mobile blocks-col-gas-limit">
+                      <span className="skeleton-pulse" style={{ width: "85px", height: 14 }} />
                     </td>
-                    <td className="table-cell-muted hide-mobile">
-                      <span className="skeleton-pulse" style={{ width: "55px", height: 18 }} />
+                    <td className="hide-mobile blocks-col-size">
+                      <span className="skeleton-pulse" style={{ width: "55px", height: 14 }} />
                     </td>
                   </tr>
                 ))}
@@ -288,19 +285,19 @@ export default function Blocks() {
           <table className="dash-table blocks-table">
             <thead>
               <tr>
-                <th>{t("tableBlock")}</th>
-                <th>{t("tableTimestamp")}</th>
-                <th>{t("tableTxns")}</th>
-                <th className="hide-mobile">{t("tableMiner")}</th>
-                <th>{t("tableGasUsed")}</th>
-                <th className="hide-mobile">{t("tableGasLimit")}</th>
-                <th className="hide-mobile">{t("tableSize")}</th>
+                <th className="blocks-col-block">{t("tableBlock")}</th>
+                <th className="blocks-col-timestamp">{t("tableTimestamp")}</th>
+                <th className="blocks-col-txns">{t("tableTxns")}</th>
+                <th className="hide-mobile blocks-col-miner">{t("tableMiner")}</th>
+                <th className="blocks-col-gas-used">{t("tableGasUsed")}</th>
+                <th className="hide-mobile blocks-col-gas-limit">{t("tableGasLimit")}</th>
+                <th className="hide-mobile blocks-col-size">{t("tableSize")}</th>
               </tr>
             </thead>
             <tbody>
               {blocks.map((block) => (
                 <tr key={block.number}>
-                  <td>
+                  <td className="blocks-col-block">
                     <Link
                       to={`/${networkId}/block/${Number(block.number).toString()}`}
                       className="table-cell-number"
@@ -308,11 +305,13 @@ export default function Blocks() {
                       {Number(block.number).toLocaleString()}
                     </Link>
                   </td>
-                  <td className="table-cell-text">{formatTime(block.timestamp)}</td>
-                  <td className="table-cell-value">
+                  <td className="table-cell-text blocks-col-timestamp">
+                    {formatTime(block.timestamp)}
+                  </td>
+                  <td className="table-cell-value blocks-col-txns">
                     {block.transactions ? block.transactions.length : 0}
                   </td>
-                  <td className="table-cell-mono hide-mobile" title={block.miner}>
+                  <td className="table-cell-mono hide-mobile blocks-col-miner" title={block.miner}>
                     <Link
                       to={`/${networkId}/address/${block.miner}`}
                       className="table-cell-address"
@@ -320,11 +319,13 @@ export default function Blocks() {
                       {truncate(block.miner)}
                     </Link>
                   </td>
-                  <td className="table-cell-text">{Number(block.gasUsed).toLocaleString()}</td>
-                  <td className="table-cell-muted hide-mobile">
+                  <td className="table-cell-text blocks-col-gas-used">
+                    {Number(block.gasUsed).toLocaleString()}
+                  </td>
+                  <td className="table-cell-muted hide-mobile blocks-col-gas-limit">
                     {Number(block.gasLimit).toLocaleString()}
                   </td>
-                  <td className="table-cell-muted hide-mobile">
+                  <td className="table-cell-muted hide-mobile blocks-col-size">
                     {Number(block.size).toLocaleString()} {t("bytes")}
                   </td>
                 </tr>
