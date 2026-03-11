@@ -4678,6 +4678,55 @@ code {
   text-align: center;
 }
 
+.settings-devtools-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 16px;
+  text-align: left;
+}
+
+.settings-tabs-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: sticky;
+  top: 88px;
+  align-self: start;
+}
+
+.settings-tab-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--color-primary-alpha-20);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.settings-tab-button.active {
+  color: var(--text-primary);
+  border-color: var(--color-primary-alpha-40);
+  background: var(--color-primary-alpha-10);
+}
+
+.settings-tab-content .settings-section-general,
+.settings-tab-content .settings-section-api,
+.settings-tab-content .settings-section-rpc,
+.settings-tab-content .settings-section-advanced {
+  display: none;
+}
+
+.settings-tab-content.settings-tab-general .settings-section-general,
+.settings-tab-content.settings-tab-api .settings-section-api,
+.settings-tab-content.settings-tab-rpc .settings-section-rpc,
+.settings-tab-content.settings-tab-advanced .settings-section-advanced {
+  display: block;
+}
+
 .settings-top-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -4696,6 +4745,21 @@ code {
   .settings-top-row,
   .settings-grid {
     grid-template-columns: 1fr;
+  }
+
+  .settings-devtools-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-tabs-sidebar {
+    position: static;
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 6px;
+  }
+
+  .settings-tab-button {
+    white-space: nowrap;
   }
 }
 
@@ -5085,6 +5149,13 @@ code {
 .settings-save-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px var(--color-primary-alpha-40);
+}
+
+.settings-save-button:disabled {
+  opacity: 0.65;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
 }
 
 /* Sticky Save Button Container */
