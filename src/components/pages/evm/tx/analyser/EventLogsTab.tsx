@@ -11,7 +11,7 @@ import {
   getEventTypeColor,
 } from "../../../../../utils/eventDecoder";
 import { decodeEventWithAbi } from "../../../../../utils/inputDecoder";
-import LongString from "../../../../common/LongString";
+
 
 const EventLogsTab: React.FC<{
   logs: EthLog[];
@@ -137,7 +137,7 @@ const EventLogsTab: React.FC<{
                           <>
                             {enrichedContract.name}{" "}
                             <span className="tx-log-address-hex">
-                              (<LongString value={log.address} start={6} end={4} />)
+                              ({log.address})
                             </span>
                           </>
                         ) : (

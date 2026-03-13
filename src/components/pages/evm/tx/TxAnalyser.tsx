@@ -34,9 +34,7 @@ const TxAnalyser: React.FC<TxAnalyserProps> = ({
   // Reset to a base tab when leaving super user mode
   // biome-ignore lint/correctness/useExhaustiveDependencies: only react to isSuperUser changes
   useEffect(() => {
-    if (isSuperUser) {
-      setCollapsed(false);
-    } else {
+    if (!isSuperUser) {
       const superTabs: AnalyserTab[] = ["callTree", "gasProfiler", "stateChanges"];
       setActiveTab((prev) => (superTabs.includes(prev) ? defaultTab : prev));
     }
@@ -169,7 +167,7 @@ const TxAnalyser: React.FC<TxAnalyserProps> = ({
     isUnsupported,
   ]);
 
-  const [collapsed, setCollapsed] = useState(!isSuperUser);
+  const [collapsed, setCollapsed] = useState(true);
 
   const handleTabClick = useCallback(
     (tab: AnalyserTab) => {

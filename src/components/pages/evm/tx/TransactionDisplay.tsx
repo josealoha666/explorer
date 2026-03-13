@@ -819,11 +819,11 @@ const TransactionDisplay: React.FC<TransactionDisplayProps> = React.memo(
                         </div>
                         <div>
                           <span className="log-label">{t("traceFrom")}</span>{" "}
-                          <LongString value={callTrace.from} start={10} end={8} />
+                          {callTrace.from}
                         </div>
                         <div>
                           <span className="log-label">{t("traceTo")}</span>{" "}
-                          <LongString value={callTrace.to} start={10} end={8} />
+                          {callTrace.to}
                         </div>
                         <div>
                           <span className="log-label">{t("traceValue")}</span> {callTrace.value}
